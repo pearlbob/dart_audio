@@ -5,26 +5,26 @@ import 'dart:typed_data';
 import 'package:libao/libao.dart';
 
 void main() {
-  print(Platform.operatingSystem);
-  print('processors: ${Platform.numberOfProcessors}');
-  // print('environment: ${Platform.environment}');
-  print('localHostname: ${Platform.localHostname}');
-  print('version: ${Platform.version}');
+  // print(Platform.operatingSystem);
+  // print('processors: ${Platform.numberOfProcessors}');
+  // // print('environment: ${Platform.environment}');
+  // print('localHostname: ${Platform.localHostname}');
+  // print('version: ${Platform.version}');
 
   //  required:    sudo apt-get install libao-dev
   final ao = Platform.version.contains('_x64') ? Libao.open() : Libao.open('/usr/lib/aarch64-linux-gnu/libao.so.4');
 
   ao.initialize();
 
-  for (var info in ao.driverInfoList()) {
-    print('$info');
-  }
-  print('\n');
+  // for (var info in ao.driverInfoList()) {
+  //   print('$info');
+  // }
+  // print('\n');
 
-  final driverId = ao.defaultDriverId();
-  print('driverId: $driverId\n');
+  final driverId = ao.driverId('pulse'); //ao.defaultDriverId();
+  //print('driverId: $driverId\n');
 
-  print(ao.driverInfo(driverId));
+  print(ao.driverInfo(driverId).name);
 
   const bits = 16;
   const channels = 2;
@@ -37,7 +37,7 @@ void main() {
       // byteFormat: ByteFormat.native,
       matrix: 'R');
 
-  const volume = 0.35;
+  const volume = 0.15;
   const freq = 110.0;
 
   // Number of bytes * Channels * Sample rate.
