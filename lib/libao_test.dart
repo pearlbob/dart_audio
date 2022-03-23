@@ -16,10 +16,10 @@ void main() {
 
   ao.initialize();
 
-  // for (var info in ao.driverInfoList()) {
-  //   print('$info');
-  // }
-  // print('\n');
+  for (var info in ao.driverInfoList()) {
+    print('$info');
+  }
+  print('\n');
 
   final driverId = ao.driverId('pulse'); //ao.defaultDriverId();
   //print('driverId: $driverId\n');
@@ -35,7 +35,7 @@ void main() {
       channels: channels,
       rate: rate,
       // byteFormat: ByteFormat.native,
-      matrix: 'R');
+      matrix: 'L,R');
 
   const volume = 0.15;
   const freq = 110.0;
